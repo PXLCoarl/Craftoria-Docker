@@ -30,6 +30,9 @@ To use this Docker image, follow the instructions below:
    ghcr.io/pxlcoarl/craftoriadocker:latest
    ```
 3. **The server will automatically start, but you will have to accept the EULA manually.**
+   
+   To accept the EULA, you can modify the `eula.txt` file in the `/data` directory. Set `eula=true` to accept the EULA.
+
 
 ## Configuration
 
