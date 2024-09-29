@@ -17,7 +17,6 @@ To use this Docker image, follow the instructions below:
    docker pull ghcr.io/pxlcoarl/craftoriadocker:latest
    ```
 2. Run the Docker container:
-   I strongly recommend to use a volume for persistent data storage. Refer to [Docker's volume guide](https://docs.docker.com/engine/storage/volumes/#create-and-manage-volumes)
    ```bash
    docker run --name containername -d -p 25565:portvalue -v volumename:/data ghcr.io/pxlcoarl/craftoriadocker:latest
    ```
@@ -31,4 +30,4 @@ You can modify the server settings and configurations within this directory.
 ## Additional Information
 
 The entry point for the server is set to `/bin/bash ./startserver.sh`.
-Make sure to mount any volumes you need for persistent data storage when running the container.
+Make sure to mount any volumes you need for persistent data storage when running the container. Refer to [Docker's volume guide](https://docs.docker.com/engine/storage/volumes/#create-and-manage-volumes).
