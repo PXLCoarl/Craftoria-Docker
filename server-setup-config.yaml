@@ -49,11 +49,11 @@ install:
 
 launch:
   # specifies the max amount of ram the server is supposed to launch with (Xmx)
-  maxRam: "{{@maxRam@}}"
+  maxRam: 5G
   # specifies the minimal amount of ram the server is supposed to launch with (Xms)
-  minRam: "{{@minRam@}}"
+  minRam: 3G
   # specifies whether the server is supposed to auto restart after crash
-  autoRestart: ${AUTO_RESTART:-false}
+  autoRestart: false
   javaArgs:
     - "-XX:+UseG1GC"
     

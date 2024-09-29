@@ -9,7 +9,4 @@ RUN echo "eula=true" > /data/eula.txt
 
 RUN chmod -R 755 .
 
-ENV MAX_RAM=5G
-ENV MIN_RAM=3G
-
 ENTRYPOINT ["/bin/bash", "./startserver.sh"]
