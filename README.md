@@ -37,7 +37,7 @@ To use this Docker image, follow the instructions below:
 - To set the minimum amount of RAM the server will use, change `MIN_RAM` to [0G-XXG].
 - To set the maximum amount of RAM the server can use, change `MAX_RAM` to [0G-XXG].
 #### Other Settings
-- To change the server's behavior on crash, change AUTO_RESTART to either `true` or `false`. 
+- To change the server's behavior on crash, change `AUTO_RESTART` to either `true` or `false`. 
 
 All server files are copied to the `/data` directory inside the container.  
 You can modify the server settings and configurations within this directory. You can modify the server settings and configurations within this directory. For more information, refer to the [Minecraft wiki/server.properties](https://minecraft.fandom.com/wiki/Server.properties).
