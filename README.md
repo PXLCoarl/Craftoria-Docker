@@ -23,15 +23,12 @@ To use this Docker image, follow the instructions below:
    -d \
    -p 25565:25565 \
    -v volumename:/data \
-   -e MAX_RAM=6G \
-   -e MIN_RAM=4G \
    ghcr.io/pxlcoarl/craftoriadocker:latest
    ```
 3. **The server will automatically start, and the EULA is accepted by default.**
 
 ## Configuration
-
-You can change the maximum and minimum RAM values by modifying the environment variables `MAX_RAM` and `MIN_RAM`.    
+   
 All server files are copied to the `/data` directory inside the container.  
 You can modify the server settings and configurations within this directory.
 
