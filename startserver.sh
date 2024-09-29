@@ -6,6 +6,14 @@ if (( $(java -version 2>&1 | head -1 | cut -d'"' -f2 | sed '/^1\./s///' | cut -d
     JAVA_FLAGS="-d64"
 fi
 
+# Get RAM settings from environment variables with defaults
+MAX_RAM=${MAX_RAM:-5G}
+MIN_RAM=${MIN_RAM:-3G}
+
+# Update the server-setup-config.yaml with the provided RAM values
+sed -i "s/{{@maxRam@}}/$MAX_RAM/g" server-setup-config.yaml
+sed -i "s/{{@minRam@}}/$MIN_RAM/g" server-setup-config.yaml
+
 DO_RAMDISK=0
 if [[ $(cat server-setup-config.yaml | grep 'ramDisk:' | awk 'BEGIN {FS=":"}{print $2}') =~ "yes" ]]; then
     SAVE_DIR=$(cat server.properties | grep 'level-name' | awk 'BEGIN {FS="="}{print $2}')
@@ -14,9 +22,10 @@ if [[ $(cat server-setup-config.yaml | grep 'ramDisk:' | awk 'BEGIN {FS=":"}{pri
     sudo mount -t tmpfs -o size=2G tmpfs $SAVE_DIR
     DO_RAMDISK=1
 fi
+
 if [ -f serverstarter-2.4.1.jar ]; then
     echo "Skipping download. Using existing serverstarter-2.4.1.jar"
-    java $JAVA_FLAGS -jar serverstarter-2.4.1.jar
+    java $JAVA_FLAGS -Xmx$MAX_RAM -Xms$MIN_RAM -jar serverstarter-2.4.1.jar
     if [[ $DO_RAMDISK -eq 1 ]]; then
         sudo umount $SAVE_DIR
         rm -rf $SAVE_DIR
@@ -26,6 +35,7 @@ if [ -f serverstarter-2.4.1.jar ]; then
 else
     export URL="https://github.com/TeamAOF/ServerStarter/releases/download/v2.4.1/serverstarter-2.4.1.jar"
 fi
+
 echo $URL
 which wget >> /dev/null
 if [ $? -eq 0 ]; then
@@ -40,7 +50,8 @@ else
         echo "Neither wget or curl were found on your system. Please install one and try again"
     fi
 fi
-java $JAVA_FLAGS -jar serverstarter-2.4.1.jar
+
+java $JAVA_FLAGS -Xmx$MAX_RAM -Xms$MIN_RAM -jar serverstarter-2.4.1.jar
 if [[ $DO_RAMDISK -eq 1 ]]; then
     sudo umount $SAVE_DIR
     rm -rf $SAVE_DIR
